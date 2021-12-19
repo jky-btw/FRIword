@@ -11,7 +11,7 @@ $.getJSON("friword.json", function (data) {
 function changeWord() {
   const i = Math.floor(Math.random() * wordListLength);
   const word = Object.keys(wordList)[i];
-  const definition = wordList[word];
+  const definitions = wordList[word];
 
   const splitArray = word.split(new RegExp(/([F|f]r[i|í])/));
 
@@ -26,11 +26,11 @@ function changeWord() {
 
   $(".definitionContainer").empty();
 
-  definition.forEach((element) => {
+  for (let i = 0; i < definitions.length; i++) {
     $(".definitionContainer").append(
-      '<div class="definition">' + element + "</div>"
+      `<div class="definition"> (${i + 1}) ${definitions[i]}</div>`
     );
-  });
+  }
 
   $(".definition").fadeIn(700);
 
