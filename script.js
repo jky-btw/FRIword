@@ -1,18 +1,40 @@
-import wordList from "./friword.json" assert { type: "json" };
+var wordList = {};
+var wordListLength = 0;
 
-const wordListLength = Object.keys(wordList).length;
-const i = Math.floor(Math.random() * wordListLength);
-const word = Object.keys(wordList)[i];
-const definition = wordList[word];
+$.getJSON("friword.json", function (data) {
+  wordList = data;
+  wordListLength = Object.keys(wordList).length;
 
-const splitArray = word.split(new RegExp(/([F|f]r[i|í])/));
+  changeWord();
+});
 
-$(".left").text(splitArray[0]);
-$(".fri").text(splitArray[1].toUpperCase());
-$(".right").text(splitArray[2]);
-$(".definition").text(definition);
+function changeWord() {
+  const i = Math.floor(Math.random() * wordListLength);
+  const word = Object.keys(wordList)[i];
+  const definition = wordList[word];
 
-console.log(word);
+  const splitArray = word.split(new RegExp(/([F|f]r[i|í])/));
 
-//console.log(word);
-//console.log(definition);
+  $(".left").css("opacity", "0");
+  $(".right").css("opacity", "0");
+
+  $(".left").text(splitArray[0]);
+  $(".right").text(splitArray[2]);
+
+  $(".left").animate({ opacity: 1 }, 600);
+  $(".right").animate({ opacity: 1 }, 600);
+
+  $(".definitionContainer").empty();
+
+  definition.forEach((element) => {
+    $(".definitionContainer").append(
+      '<div class="definition">' + element + "</div>"
+    );
+  });
+
+  $(".definition").fadeIn(700);
+
+  $(document).one("DOMMouseScroll mousewheel click", function (e) {
+    changeWord();
+  });
+}
