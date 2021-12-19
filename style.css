@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+}
+
+.containerOuter {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.containerInner {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.left,
+.right {
+  font-family: "Poppins", sans-serif;
+  font-size: 4em;
+  text-align: center;
+}
+
+.definition {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.fri {
+  font-family: "Poppins", sans-serif;
+  font-size: 8em;
+  font-weight: 800;
+  color: red;
+  text-align: center;
+}
